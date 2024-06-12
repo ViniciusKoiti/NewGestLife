@@ -15,8 +15,9 @@ export default function LoginScreen() {
       label: 'email',
       placeholder: 'Digite seu email',
       secureTextEntry: false,
-      errors: {error: "teste"},
-      keyboardType: 'email-address'
+      errors: { error: "teste" },
+      keyboardType: 'email-address',
+      inputValue: ''
     },
   ]
   
@@ -28,10 +29,10 @@ export default function LoginScreen() {
     <View>
       <Text> Vinicius</Text>
       <ValidatedInputField 
-      placeholder={field.placeholder}
+        placeholder={field.placeholder}
         secureTextEntry={field.secureTextEntry}
         label={field.label}
-        errors={field.errors}></ValidatedInputField>
+        errors={field.errors} inputValue={''}></ValidatedInputField>
     </View>
   );
 }
