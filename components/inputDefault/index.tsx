@@ -1,9 +1,15 @@
 import React from 'react';
-import { TextInput, Text, View, StyleSheet } from 'react-native';
+import { TextInput, Text, View, StyleSheet,  } from 'react-native';
 import inputStyles from './inputDefaultStyle';
 import InputFieldProps from './InputProps';
 
-const { input, container, labelStyle, errorInput, errorText } = inputStyles;
+const { 
+  input, 
+  container, 
+  labelStyle,
+  errorInput,
+  errorText 
+} = inputStyles;
 
 const ValidatedInputField: React.FC<InputFieldProps> = ({ 
   placeholder, 
@@ -15,7 +21,7 @@ const ValidatedInputField: React.FC<InputFieldProps> = ({
   errors
 }: InputFieldProps) => (
   <View style={container}>
-    <Text style={labelStyle}>{placeholder}</Text>
+    <Text style={labelStyle}>{label}</Text>
     <TextInput
       style={[input, errors[label] ? errorInput : null]}
       placeholder={placeholder}
