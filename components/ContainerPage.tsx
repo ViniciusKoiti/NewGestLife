@@ -14,6 +14,3 @@ export function ContainerPage({ href, ...rest }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
- 
-});

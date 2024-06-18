@@ -1,4 +1,7 @@
-import { KeyboardTypeOptions, NativeSyntheticEvent, TextInputEndEditingEventData } from "react-native";
+import { 
+    KeyboardTypeOptions, 
+    NativeSyntheticEvent, 
+    TextInputEndEditingEventData } from "react-native";
 
 interface InputFieldProps {
     placeholder: string,

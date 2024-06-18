@@ -9,13 +9,14 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     const handleChange = (name: string, valueInput: string) => {
-      console.log({name, valueInput})
         setFormData({ ...formData, [name]: valueInput });
     };
 
     const handleBlur = (label: string,
-         valueInput: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
-        // Lógica adicional ao desfocar, se necessário
+         eventBlur: NativeSyntheticEvent<TextInputEndEditingEventData>) => {
+
+
+        
     };
 
     const handleSubmit = () => {

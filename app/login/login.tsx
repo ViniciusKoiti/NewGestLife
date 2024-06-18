@@ -8,8 +8,6 @@ import { auth } from '@/infra/firebase';
 
 
 export default function LoginScreen() {
-
-
   const fields: InputFieldProps[] = [
     {
       label: 'Email',
@@ -22,9 +20,12 @@ export default function LoginScreen() {
       onSubmitted: (value, label) => {
         if (!value) {
           return 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(value)) {
+        }  
+        
+        if (!/\S+@\S+\.\S+/.test(value)) {
           return 'Invalid email address';
         }
+        
         return null;
       },
     },
@@ -77,13 +78,5 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  backgroundColor: {
-    flex: 1,
-    backgroundColor: 'blue'
   },
 });
