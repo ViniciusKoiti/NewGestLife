@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { View, Button, StyleSheet, NativeSyntheticEvent, TextInputEndEditingEventData } from 'react-native';
+import { View, Text, NativeSyntheticEvent, TextInputEndEditingEventData, Pressable } from 'react-native';
 import InputFieldProps from '../inputDefault/InputProps';
 import ValidatedInputField from '../inputDefault';
 import DynamicFormProps from './DynamicFormProps';
+import formStyles from './DynamicFormStyle';
 
 const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const { buttonDefault, textDefault } = formStyles;
 
   const handleChange = (name: string, valueInput: string) => {
     setFormData({ ...formData, [name]: valueInput });
@@ -65,7 +68,9 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
   return (
     <View>
       {fields.map(field => renderField(field))}
-      <Button title="Submit" onPress={handleSubmit} />
+      <Pressable style={buttonDefault} onPress={handleSubmit}>
+       <Text style={textDefault}>Login</Text>
+    </Pressable>
     </View>
   );
 }

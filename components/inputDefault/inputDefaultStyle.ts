@@ -6,10 +6,11 @@ const inputStyles = StyleSheet.create({
       borderColor: '#CCE2F2',
       borderWidth: 1,
       borderRadius: 10,
+      backgroundColor: '#F7FAFD',
       padding:10,
     },
     container: {
-
+      padding: 10
     }, 
     labelStyle: {
       color: '#6B7CBA',
