@@ -1,29 +1,21 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { loginUser, registerUser } from '../../../mock/UserMockDatabase';
-import { UserMock } from '../../../mock/models/UserMock';
-import AuthContextData from './AuthContextProps';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createFirebaseAuthProvider } from './implements/FirebaseAuthContext';
+import AuthContextDataProps from './ports/AuthContextProps';
+import { createMockAuthProvider } from './implements/MockAuthContext';
 
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const authProvider: AuthContextDataProps = createMockAuthProvider();
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const AuthContext = createContext<AuthContextDataProps>(authProvider);
 
-  const login = ({ username, password }: UserMock): boolean => {
-    const success = loginUser({ username, password });
-    setIsAuthenticated(success);
-    return success;
-  };
+export const AuthProviderWrapper: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(authProvider.isAuthenticated);
 
-  const register = ({ username, password }: UserMock): boolean => {
-    return registerUser({ username, password });
-  };
-
-  const logout = () => {
-    setIsAuthenticated(false);
-  };
+  useEffect(() => {
+    const handleAuthChange = () => setIsAuthenticated(authProvider.isAuthenticated);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, registerUser, logout }}>
+    <AuthContext.Provider value={authProvider}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,7 +5,7 @@ import ValidatedInputField from '../inputDefault';
 import DynamicFormProps from './DynamicFormProps';
 import formStyles from './DynamicFormStyle';
 
-const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
+const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit, submitButton }) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -69,8 +69,8 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
     <View>
       {fields.map(field => renderField(field))}
       <Pressable style={buttonDefault} onPress={handleSubmit}>
-       <Text style={textDefault}>Login</Text>
-    </Pressable>
+        <Text style={textDefault}>{submitButton}</Text>
+      </Pressable>
     </View>
   );
 }

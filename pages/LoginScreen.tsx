@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable, Text  } from 'react-native';
 import InputFieldProps from '../components/inputDefault/InputProps';
 import DynamicForm from '../components/dynamicForm';
 
@@ -57,9 +57,10 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     <View style={styles.containerRadius}>
       <View style={styles.container}>
         <View style={styles.containerForm}>
-
-      
-        <DynamicForm fields={fields} onSubmit={handleSubmit} submitButton={''} />
+          <DynamicForm fields={fields} onSubmit={handleSubmit} submitButton={'Login'} />
+          <Pressable onPress={() => navigation.navigate('Register')}>
+            <Text>Registre-se</Text>
+          </Pressable>
         </View>
       </View>
     </View>
