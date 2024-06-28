@@ -5,6 +5,7 @@ const inputStyles = StyleSheet.create({
       height: 40,
       borderColor: '#CCE2F2',
       borderWidth: 1,
+      color: "#1a1a1a",
       borderRadius: 10,
       backgroundColor: '#F7FAFD',
       padding:10,

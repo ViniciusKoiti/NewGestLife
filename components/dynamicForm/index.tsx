@@ -4,6 +4,7 @@ import InputFieldProps from '../inputDefault/InputProps';
 import ValidatedInputField from '../inputDefault';
 import DynamicFormProps from './DynamicFormProps';
 import formStyles from './DynamicFormStyle';
+import DateInputField from '../datePickerInput/datePickerInput';
 
 const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit, submitButton }) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
@@ -59,7 +60,13 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit, submitButto
       case 'multiselect':
         return null;
       case 'datecalendar':
-        return null;
+        return ( <DateInputField
+          key={field.label}
+          {...field}
+          inputValue={formData[field.label] || ''}
+          errors={errors}
+          onChanged={handleChange} />
+        )
       default:
         return null;
     }

@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Text  } from 'react-native';
+import { View, Pressable, Text  } from 'react-native';
 import InputFieldProps from '../components/inputDefault/InputProps';
 import DynamicForm from '../components/dynamicForm';
-import loginStyleScreen from './stylePage/LoginStyleScreen';
+import registerStyleScreen from './stylePage/RegisterStyleScreen';
 
-const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+const RegisterScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const {
     registerButton, 
     textRegister, 
     containerRadius,
     container,
     containerForm
-  } = loginStyleScreen;
+  } = registerStyleScreen;
 
   
   const fields: InputFieldProps[] = [
@@ -21,12 +21,6 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       type: 'input',
       secureTextEntry: false,
       keyboardType: 'email-address',
-      onChanged: (label: string, value: string) => {
-        console.log(`Changed ${label}: ${value}`);
-      },
-      onBlur: (label: string, event: any) => {
-        console.log(`Blurred ${label}`);
-      },
       onSubmitted: (value: string, label: string) => {
         if (!value.includes('@')) {
           return 'Invalid email address';
@@ -37,17 +31,26 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       errors: {}
     },
     {
-      label: 'Password',
-      placeholder: 'Password',
+      label: 'Senha',
+      placeholder: 'Senha',
       type: 'input',
       secureTextEntry: true,
       keyboardType: 'default',
-      onChanged: (label: string, value: string) => {
-        console.log(`Changed ${label}: ${value}`);
+      onSubmitted: (value: string, label: string) => {
+        if (value.length < 6) {
+          return 'Password must be at least 6 characters';
+        }
+        return '';
       },
-      onBlur: (label: string, event: any) => {
-        console.log(`Blurred ${label}`);
-      },
+      inputValue: '',
+      errors: {}
+    },
+    {
+      label: 'Data de Nascimento',
+      placeholder: 'Data de Nascimento',
+      type: 'datecalendar',
+      secureTextEntry: false,
+      keyboardType: 'default',
       onSubmitted: (value: string, label: string) => {
         if (value.length < 6) {
           return 'Password must be at least 6 characters';
@@ -67,14 +70,12 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     <View style={containerRadius}>
       <View style={container}>
         <View style={containerForm}>
-          <DynamicForm fields={fields} onSubmit={handleSubmit} submitButton={'Login'} />
-          <Pressable style={registerButton} onPress={() => navigation.navigate('Register')}>
-            <Text style={textRegister}>Registre-se</Text>
-          </Pressable>
+          <DynamicForm fields={fields} onSubmit={handleSubmit} submitButton={'Register'} />
+       
         </View>
       </View>
     </View>
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
